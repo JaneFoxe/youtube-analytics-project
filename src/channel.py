@@ -45,3 +45,40 @@ class Channel:
                         'view_count': self.view_count}
         with open(file_name, 'w', encoding='utf=8') as f:
             json.dump(channel_info, f, ensure_ascii=False)
+
+#магические методы
+    def __str__(self) -> str:
+        """Показывает информацию пользователю"""
+        return f"{self.title} ({self.url})"
+
+    def __repr__(self) -> str:
+        """Показывает информацию разработчику"""
+        return f"{self.__class__.__name__} ({self.__channel_id})"
+
+    def __add__(self, other) -> int:
+        """Суммирование экземпляров класса(количество подписчиков)"""
+        return int(self.subscriber_count) + int(other.subscriber_count)
+
+    def __sub__(self, other) -> int:
+        """Вычитание экземпляров класса(количество подписчиков)"""
+        return int(self.subscriber_count) - int(other.subscriber_count)
+
+    def __gt__(self, other) -> bool:
+        """Сравнение экземпляров класса(количество подписчиков)"""
+        return int(self.subscriber_count) > int(other.subscriber_count)
+
+    def __ge__(self, other) -> bool:
+        """Сравнение экземпляров класса(количество подписчиков)"""
+        return self.subscriber_count >= other.subscriber_count
+
+    def __lt__(self, other) -> bool:
+        """Сравнение экземпляров класса(количество подписчиков)"""
+        return self.subscriber_count < other.subscriber_count
+
+    def __le__(self, other) -> bool:
+        """Сравнение экземпляров класса(количество подписчиков)"""
+        return self.subscriber_count <= other.subscriber_count
+
+    def __eq__(self, other) -> bool:
+        """Сравнение экземпляров класса(количество подписчиков)"""
+        return self.subscriber_count == other.subscriber_count
